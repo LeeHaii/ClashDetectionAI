@@ -1,0 +1,10 @@
+{
+  "model": "clash-detection-qwen3-vl-2b",
+  "cases": [
+    {
+      "id": "replace-with-reviewed-case",
+      "image": "replace-with-reviewed-image.jpg",
+      "prompt": "Analyze this clash using the versioned production prompt."
+    }
+  ]
+}

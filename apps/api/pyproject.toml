@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "clash-detection-api"
+version = "0.1.0"
+description = "ClashDetectionAI FastAPI service"
+requires-python = ">=3.11"
+dependencies = [
+  "alembic>=1.15,<2",
+  "beautifulsoup4>=4.13,<5",
+  "fastapi>=0.135,<1",
+  "httpx>=0.28,<1",
+  "jinja2>=3.1,<4",
+  "lxml>=5.3,<7",
+  "pydantic-settings>=2.8,<3",
+  "python-multipart>=0.0.20,<1",
+  "sqlalchemy>=2.0,<3",
+  "uvicorn[standard]>=0.34,<1",
+  "weasyprint>=68,<70",
+]
+
+[project.optional-dependencies]
+dev = [
+  "mypy>=1.15,<2",
+  "pypdf>=5.4,<7",
+  "pytest>=8.3,<9",
+  "pytest-asyncio>=0.26,<1",
+  "ruff>=0.11,<1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["B008"]

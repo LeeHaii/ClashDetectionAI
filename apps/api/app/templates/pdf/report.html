@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ report.title }}</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 20mm 16mm 18mm;
+        @bottom-right { content: "Page " counter(page) " of " counter(pages); color: #64748b; font-size: 9pt; }
+      }
+      body { color: #172033; font: 10pt/1.45 "DejaVu Sans", sans-serif; }
+      header { border-bottom: 3px solid #2563eb; margin-bottom: 18px; padding-bottom: 10px; }
+      h1 { font-size: 22pt; margin: 0 0 4px; }
+      h2 { break-after: avoid; color: #1e3a8a; font-size: 15pt; margin-top: 24px; }
+      .meta { color: #64748b; }
+      .clash { break-inside: avoid; }
+      img { border: 1px solid #cbd5e1; border-radius: 6px; max-height: 230px; max-width: 100%; }
+      table { border-collapse: collapse; margin-top: 10px; width: 100%; }
+      th, td { border: 1px solid #cbd5e1; padding: 6px 8px; text-align: left; vertical-align: top; }
+      th { background: #eff6ff; width: 34%; }
+      .badge { border-radius: 999px; color: white; display: inline-block; font-weight: bold; padding: 2px 9px; }
+      .High { background: #dc2626; } .Medium { background: #d97706; } .Low { background: #2563eb; } .None { background: #64748b; }
+      .pending { background: #f8fafc; color: #64748b; padding: 10px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>{{ report.title }}</h1>
+      <div class="meta">Source: {{ report.original_filename }} · Model: {{ model_version }} · Parser: {{ report.parser_version }}</div>
+    </header>
+    {% for row in rows %}
+      <section class="clash">
+        <h2>{{ row.clash.clash_id }}</h2>
+        {% if row.image %}<img src="{{ row.image }}" alt="Clash screenshot">{% endif %}
+        {% if row.analysis %}
+          <table>
+            <tr><th>Clash</th><td>{{ row.analysis.clash }}</td></tr>
+            <tr><th>Type / orientation</th><td>{{ row.analysis.clash_type or "None" }} / {{ row.analysis.orientation or "None" }}</td></tr>
+            <tr><th>Cross-section</th><td>{{ row.analysis.cross_sectional_shape or "None" }} / {{ row.analysis.cross_sectional_size or "None" }}</td></tr>
+            <tr><th>Severity</th><td><span class="badge {{ row.analysis.severity }}">{{ row.analysis.severity }}</span></td></tr>
+            <tr><th>Recommended action</th><td>{{ row.analysis.recommended_action or "None" }}</td></tr>
+            <tr><th>Grid / distance</th><td>{{ row.clash.grid or "Unknown" }} / {{ row.clash.distance_raw or "Unknown" }}</td></tr>
+            <tr><th>Original elements</th><td>
+              {% for element in row.clash.elements %}ID {{ element.element_id or "Unknown" }} ({{ element.layer or "Unknown layer" }}){% if not loop.last %} vs {% endif %}{% endfor %}
+            </td></tr>
+          </table>
+        {% else %}
+          <p class="pending">No completed analysis is available for this clash.</p>
+        {% endif %}
+      </section>
+    {% endfor %}
+  </body>
+</html>
