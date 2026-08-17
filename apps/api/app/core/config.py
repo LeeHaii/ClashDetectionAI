@@ -28,9 +28,9 @@ class Settings(BaseSettings):
     inference_timeout_seconds: float = Field(default=180, gt=0)
     max_concurrent_inference: int = Field(default=1, gt=0)
 
-    model_name: str = "Qwen/Qwen3-VL-2B-Instruct"
-    served_model_name: str = "clash-detection-qwen3-vl-2b"
-    adapter_name: str = "train_2026-06-27-00-01-40"
+    model_name: str = "Qwen/Qwen2.5-VL-7B-Instruct"
+    served_model_name: str = "clash-detection-qwen2.5-vl-7b"
+    adapter_name: str = "train_2026-07-29-14-13-40"
     prompt_version: str = "clash-analysis-v1"
     parser_version: str = "navisworks-v1"
     severity_rule_version: str = "severity-v1"

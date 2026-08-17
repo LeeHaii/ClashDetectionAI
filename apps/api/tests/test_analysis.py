@@ -8,8 +8,8 @@ def normalizer() -> AnalysisNormalizer:
 
 def run() -> InferenceRun:
     return InferenceRun(
-        model_name="Qwen/Qwen3-VL-2B-Instruct",
-        adapter_version="train_2026-06-27-00-01-40",
+        model_name="Qwen/Qwen2.5-VL-7B-Instruct",
+        adapter_version="train_2026-07-29-14-13-40",
         prompt_version="clash-analysis-v1",
     )
 

@@ -9,7 +9,7 @@ flowchart LR
     api --> files[Storage service]
     api --> parser[Navisworks parser]
     api --> inference[Inference provider]
-    inference -->|OpenAI-compatible stream| model[Qwen3-VL model service]
+    inference -->|OpenAI-compatible stream| model[Qwen2.5-VL model service]
     api -->|SSE events| browser
     api --> pdf[Validated result to Jinja2 to WeasyPrint]
     pdf --> files
@@ -26,4 +26,3 @@ flowchart LR
 - `ReportRenderer` renders only escaped, validated values and rejects remote URL fetching.
 
 SQLite enables WAL and foreign keys for the MVP. Model, adapter, prompt, parser, and severity-rule versions are stored with each generated result.
-

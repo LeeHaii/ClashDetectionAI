@@ -2,15 +2,15 @@
 
 ## Authoritative model pair
 
-- Base: `Qwen/Qwen3-VL-2B-Instruct`
-- Adapter: `train_2026-06-27-00-01-40`
+- Base: `Qwen/Qwen2.5-VL-7B-Instruct`
+- Adapter: `E:\Downloads\clashAI\train_2026-07-29-14-13-40`
 
 The adapter metadata is authoritative. Run the preflight before any comparison:
 
 ```bash
 python services/model/compatibility.py preflight \
-  --adapter /models/train_2026-06-27-00-01-40 \
-  --expected-base Qwen/Qwen3-VL-2B-Instruct
+  --adapter 'E:\Downloads\clashAI\train_2026-07-29-14-13-40' \
+  --expected-base Qwen/Qwen2.5-VL-7B-Instruct
 ```
 
 ## Compatibility spike
@@ -37,11 +37,11 @@ Do not promote a serving mode until the golden set has been reviewed and the sel
 Current vLLM releases expose experimental tower/connector LoRA support for Qwen-VL models. The direct-LoRA candidate should therefore be launched with the adapter's actual rank and the tower/connector flag:
 
 ```bash
-vllm serve Qwen/Qwen3-VL-2B-Instruct \
+vllm serve Qwen/Qwen2.5-VL-7B-Instruct \
   --enable-lora \
   --enable-tower-connector-lora \
-  --max-lora-rank 8 \
-  --lora-modules clash-detection-qwen3-vl-2b=/models/train_2026-06-27-00-01-40
+  --max-lora-rank 32 \
+  --lora-modules clash-detection-qwen2.5-vl-7b=/models/train_2026-07-29-14-13-40
 ```
 
 This is a compatibility candidate, not a production recommendation, until its golden-set output matches Transformers/PEFT. Keep vLLM media inputs as API-supplied data URLs; do not enable unrestricted remote media fetching.

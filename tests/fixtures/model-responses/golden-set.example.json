@@ -1,5 +1,5 @@
 {
-  "model": "clash-detection-qwen3-vl-2b",
+  "model": "clash-detection-qwen2.5-vl-7b",
   "cases": [
     {
       "id": "replace-with-reviewed-case",
