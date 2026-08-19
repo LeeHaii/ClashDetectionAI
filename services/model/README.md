@@ -40,8 +40,14 @@ Current vLLM releases expose experimental tower/connector LoRA support for Qwen-
 vllm serve Qwen/Qwen3-VL-2B-Instruct \
   --enable-lora \
   --enable-tower-connector-lora \
+  --enable-log-requests \
+  --enable-log-outputs \
   --max-lora-rank 8 \
   --lora-modules clash-detection-qwen3-vl-2b=/models/train_2026-06-27-00-01-40
 ```
+
+`--enable-log-outputs` writes the generated response to the vLLM server logs. It requires
+`--enable-log-requests`; remove both flags after debugging because requests and model output
+may contain sensitive project data.
 
 This is a compatibility candidate, not a production recommendation, until its golden-set output matches Transformers/PEFT. Keep vLLM media inputs as API-supplied data URLs; do not enable unrestricted remote media fetching.
