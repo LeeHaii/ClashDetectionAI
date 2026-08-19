@@ -48,7 +48,7 @@ def test_pdf_contains_report_and_clash_text(tmp_path) -> None:
                     "recommended_action": "Review design priority.",
                 }
             },
-            model_version="Qwen2.5-VL-7B + adapter",
+            model_version="Qwen3-VL-2B + adapter",
         )
     except PdfUnavailableError:
         pytest.skip("WeasyPrint native libraries are unavailable")

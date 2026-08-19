@@ -9,7 +9,7 @@ flowchart LR
     api --> files[Storage service]
     api --> parser[Navisworks parser]
     api --> inference[Inference provider]
-    inference -->|OpenAI-compatible stream| model[Qwen2.5-VL model service]
+    inference -->|OpenAI-compatible stream| model[Qwen3-VL model service]
     api -->|SSE events| browser
     api --> pdf[Validated result to Jinja2 to WeasyPrint]
     pdf --> files

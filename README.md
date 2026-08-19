@@ -12,7 +12,7 @@ The repository is a small monorepo:
 
 ## Model identity
 
-The LoRA adapter `train_2026-07-29-14-13-40` declares `Qwen/Qwen2.5-VL-7B-Instruct` as its base in `adapter_config.json`. The API defaults deliberately use that pair. The local adapter source is `E:\Downloads\clashAI\train_2026-07-29-14-13-40`; mount or copy it to the model-serving host without putting the weights in this repository.
+The LoRA adapter `train_2026-06-27-00-01-40` declares `Qwen/Qwen3-VL-2B-Instruct` as its base in `adapter_config.json`. The API defaults deliberately use that pair. The local adapter source is `E:\CodingFolder\LlamaFactory\LlamaFactory\saves\Qwen3-VL-2B-Instruct\lora\train_2026-06-27-00-01-40`; mount or copy it to the model-serving host without putting the weights in this repository.
 
 ## Local development
 
